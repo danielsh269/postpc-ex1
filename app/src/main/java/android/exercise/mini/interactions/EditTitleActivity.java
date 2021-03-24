@@ -54,6 +54,16 @@ public class EditTitleActivity extends AppCompatActivity {
 
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
+      //TODO - animate here
+      fabStartEdit.setVisibility(View.GONE);
+      fabEditDone.setVisibility(View.VISIBLE);
+
+
+      textViewTitle.setVisibility(View.GONE);
+      editTextTitle.setVisibility(View.VISIBLE);
+
+      editTextTitle.setText(textViewTitle.getText());
+
     });
 
     // handle clicks on "done edit"
@@ -69,6 +79,14 @@ public class EditTitleActivity extends AppCompatActivity {
 
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
+      //TODO - animate here
+      fabEditDone.setVisibility(View.GONE);
+      fabStartEdit.setVisibility(View.VISIBLE);
+
+
+      textViewTitle.setText(editTextTitle.getText());
+      textViewTitle.setVisibility(View.VISIBLE);
+      editTextTitle.setVisibility(View.GONE);
     });
   }
 
@@ -90,5 +108,27 @@ public class EditTitleActivity extends AppCompatActivity {
     to work with views, you will need to find them first.
     to find views call `findViewById()` in a same way like in `onCreate()`
      */
+    FloatingActionButton fabStartEdit = findViewById(R.id.fab_start_edit);
+    FloatingActionButton fabEditDone = findViewById(R.id.fab_edit_done);
+    TextView textViewTitle = findViewById(R.id.textViewPageTitle);
+    EditText editTextTitle = findViewById(R.id.editTextPageTitle);
+
+    if (fabEditDone.getVisibility() == View.VISIBLE)
+    {
+      editTextTitle.setVisibility(View.GONE);
+      textViewTitle.setVisibility(View.VISIBLE);
+
+      //TODO - animate here
+      fabEditDone.setVisibility(View.GONE);
+      fabStartEdit.setVisibility(View.VISIBLE);
+
+    }
+    else
+    {
+      super.onBackPressed();
+    }
+
+
+
   }
 }
