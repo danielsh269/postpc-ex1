@@ -54,9 +54,7 @@ public class EditTitleActivity extends AppCompatActivity {
 
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
-      //TODO - animate here
-      fabStartEdit.setVisibility(View.GONE);
-      fabEditDone.setVisibility(View.VISIBLE);
+      outEditInStart(fabEditDone, fabStartEdit);
 
 
       textViewTitle.setVisibility(View.GONE);
@@ -79,15 +77,27 @@ public class EditTitleActivity extends AppCompatActivity {
 
       to complete (1.) & (2.), start by just changing visibility. only add animations after everything else is ready
        */
-      //TODO - animate here
-      fabEditDone.setVisibility(View.GONE);
-      fabStartEdit.setVisibility(View.VISIBLE);
+
+      outEditInStart(fabStartEdit, fabEditDone);
 
 
       textViewTitle.setText(editTextTitle.getText());
       textViewTitle.setVisibility(View.VISIBLE);
       editTextTitle.setVisibility(View.GONE);
     });
+  }
+
+  private void outEditInStart(FloatingActionButton fabStartEdit, FloatingActionButton fabEditDone) {
+    fabEditDone.animate().alpha(0f).setDuration(700L).withEndAction(new Runnable() {
+      @Override
+      public void run() {
+        fabEditDone.setVisibility(View.INVISIBLE);
+      }
+    }).start();
+
+    fabStartEdit.setVisibility(View.VISIBLE);
+    fabStartEdit.setAlpha(0f);
+    fabStartEdit.animate().alpha(1f).setDuration(700L).start();
   }
 
   @Override
@@ -119,8 +129,7 @@ public class EditTitleActivity extends AppCompatActivity {
       textViewTitle.setVisibility(View.VISIBLE);
 
       //TODO - animate here
-      fabEditDone.setVisibility(View.GONE);
-      fabStartEdit.setVisibility(View.VISIBLE);
+      outEditInStart(fabStartEdit, fabEditDone);
 
     }
     else
